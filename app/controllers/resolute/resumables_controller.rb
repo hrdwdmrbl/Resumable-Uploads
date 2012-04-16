@@ -102,7 +102,7 @@ module Resolute
 		end
 		
 		
-		def regular_upload	# Well still HTML5 (just not multi-part)
+		def regular_upload	# Still HTML5 (just not multi-part)
 			user = get_current_user
 			if user.nil?
 				render :nothing => true, :layout => false, :status => :forbidden	# 403
@@ -130,14 +130,12 @@ module Resolute
 			#
 			# Inform that upload is complete (file in uploads directory)
 			#
-			resp = false
 			resp = inform_upload_completed(user, params[:uploaded_file].original_filename, filepath, params[:custom_params])
 			
-			if resp != true
-				process_bad_request(resp)
-				return	# Ensure only a single call to render
-			end
-			render :text => '{}', :layout => false
+			if !resp.new_record?
+				render :json => resp.to_json
+			else
+				render :json => resp.errors.to_json
 		end
 		
 		
