@@ -110,10 +110,6 @@ module Resolute
 			
 			filepath = Resumable.sanitize_filename(params[:uploaded_file].original_filename, user)
 			
-			if !params[:custom_params].nil?	# Normalise params
-				params[:custom_params] = JSON.parse(params[:custom_params], {:symbolize_names => true})
-			end
-			
 			#
 			# Check if file is the correct format before copying out of temp folder
 			#
