@@ -12,7 +12,6 @@ module Resolute
 	class ResumablesController < ApplicationController
 		respond_to :json
 		
-		
 		##
 		# These are for testing 
 		#
@@ -32,7 +31,7 @@ module Resolute
 		def resumable_upload
 			user = get_current_user
 			if user.nil?
-				render :text => '{}', :layout => false, :status => :forbidden	# 403
+				render :text => 'user is nil. Could not find current_user.', :layout => false, :status => :forbidden	# 403
 				return
 			end
 			
@@ -76,7 +75,7 @@ module Resolute
 				#
 				resume = Resumable.find(params[:id])
 				if resume.user_id != user.to_s
-					render :text => '{}', :layout => false, :status => :forbidden	# 403
+					render :text => 'user is nil. Could not find current_user.', :layout => false, :status => :forbidden	# 403
 					return
 				end
 				
@@ -105,7 +104,7 @@ module Resolute
 		def regular_upload	# Still HTML5 (just not multi-part)
 			user = get_current_user
 			if user.nil?
-				render :nothing => true, :layout => false, :status => :forbidden	# 403
+				render :text => 'user is nil. Could not find current_user.', :layout => false, :status => :forbidden	# 403
 				return
 			end
 			
