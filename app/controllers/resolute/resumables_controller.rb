@@ -136,6 +136,7 @@ module Resolute
 				render :json => resp.to_json
 			else
 				render :json => resp.errors.to_json
+			end
 		end
 		
 		
