@@ -132,11 +132,7 @@ module Resolute
 			#
 			resp = inform_upload_completed(user, params[:uploaded_file].original_filename, filepath, params[:custom_params])
 			
-			if !resp.new_record?
-				render :json => resp.to_json
-			else
-				render :json => resp.errors.to_json
-			end
+			render :json => resp.to_json
 		end
 		
 		
