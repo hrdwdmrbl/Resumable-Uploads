@@ -127,7 +127,7 @@ module Resolute
 			#
 			resp = inform_upload_completed(user, params[:uploaded_file].original_filename, filepath, params[:custom_params])
 			
-			render :json => [resp].to_json
+			render :json => [resp.to_json].to_json
 		end
 		
 		
